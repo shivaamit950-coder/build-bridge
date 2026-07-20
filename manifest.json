@@ -1,0 +1,15 @@
+{
+  "name": "BuildBridge",
+  "short_name": "BuildBridge",
+  "description": "Find the right partner to build a business with — co-founders, manufacturers, marketers, developers, investors, designers, advisors — plus a Talent Hub to hire or teach skills.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563EB",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
