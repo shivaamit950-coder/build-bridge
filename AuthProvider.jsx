@@ -95,7 +95,7 @@ function FloatingSignIn({ open, setOpen }) {
               <button
                 onClick={handleGoogle}
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white dark:bg-[#1a2234] border border-slate-200 dark:border-slate-700 text-xs font-medium text-navy dark:text-white disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white dark:bg-[#1a2234] border border-slate-200 dark:border-slate-700 text-xs font-medium text-navy dark:text-white hover:bg-slate-50 dark:hover:bg-[#253449] transition-colors disabled:opacity-50"
               >
                 <GoogleIcon />
                 {loading ? "Connecting…" : "Continue with Google"}
