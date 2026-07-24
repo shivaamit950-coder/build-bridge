@@ -1,0 +1,32 @@
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { AuthProvider } from "@/components/AuthProvider";
+import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
+import "../globals.css";
+
+export const metadata = {
+  title: "BuildBridge - Find Your Co-Founder",
+  description: "A premium, mobile-first app to find the right partner to build a business with",
+  manifest: "/manifest.json",
+  themeColor: "#0F172A",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="icon" href="/icon-192.png" />
+      </head>
+      <body className="bg-white dark:bg-slate-950">
+        <ThemeProvider>
+          <AuthProvider>
+            {children}
+            <ServiceWorkerRegister />
+          </AuthProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
