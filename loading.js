@@ -1,4 +1,4 @@
-import { SkeletonLine, SkeletonHRow } from "@/components/Skeletons";
+import { SkeletonLine, SkeletonHRow } from "@/Skeletons";
 
 export default function HomeLoading() {
   return (
