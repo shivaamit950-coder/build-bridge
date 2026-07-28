@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabaseClient";
+import { createClient } from "@/supabaseClient";
 
 export default function ChatRoom({ conversationId, currentUserId, otherProfile, initialMessages }) {
   const [messages, setMessages] = useState(initialMessages);
