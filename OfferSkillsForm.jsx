@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabaseClient";
-import { useAuth } from "@/components/AuthProvider";
-import { TEACHING_METHODS, LANGUAGES, EXPERIENCE_LEVELS } from "@/lib/constants";
+import { createClient } from "@/supabaseClient";
+import { useAuth } from "@/AuthProvider";
+import { TEACHING_METHODS, LANGUAGES, EXPERIENCE_LEVELS } from "@/constants";
 
 export default function OfferSkillsForm({ myProfile }) {
   const [form, setForm] = useState({
