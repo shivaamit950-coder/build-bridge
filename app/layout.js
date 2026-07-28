@@ -1,6 +1,6 @@
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { AuthProvider } from "@/components/AuthProvider";
-import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
+import { ThemeProvider } from "@/ThemeProvider";
+import { AuthProvider } from "@/AuthProvider";
+import { ServiceWorkerRegister } from "@/ServiceWorkerRegister";
 import "../globals.css";
 
 export const metadata = {
