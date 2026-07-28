@@ -1,9 +1,9 @@
 "use client";
 import { useState, useMemo } from "react";
-import SkillProfileCard from "@/components/SkillProfileCard";
-import OfferSkillsForm from "@/components/OfferSkillsForm";
-import { EXPERIENCE_LEVELS, LANGUAGES, PRICE_RANGES, AVAILABILITY } from "@/lib/constants";
-import { useLocation, haversineKm, DISTANCE_OPTIONS } from "@/lib/useLocation";
+import SkillProfileCard from "@/SkillProfileCard";
+import OfferSkillsForm from "@/OfferSkillsForm";
+import { EXPERIENCE_LEVELS, LANGUAGES, PRICE_RANGES, AVAILABILITY } from "@/constants";
+import { useLocation, haversineKm, DISTANCE_OPTIONS } from "@/useLocation";
 
 export default function SkillsHub({ myProfile, experts, learners, currentUserId }) {
   const [tab, setTab] = useState("find"); // find | offer
