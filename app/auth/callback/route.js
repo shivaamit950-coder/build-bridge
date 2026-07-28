@@ -1,16 +1,38 @@
+import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 
-   export async function GET(request) {
-     const { searchParams } = new URL(request.url);
-     const code = searchParams.get('code');
-     const next = searchParams.get('next') || '/';
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const code = searchParams.get('code');
+  const next = searchParams.get('next') || '/';
 
-     // Supabase automatically creates the session when code is present
-     // Just redirect to the destination page
-     if (code) {
-       return NextResponse.redirect(new URL(next, request.url));
-     }
+  if (!code) {
+    return NextResponse.redirect(new URL('/?error=no_code', request.url));
+  }
 
-     // No code = auth failed, redirect to home with error
-     return NextResponse.redirect(new URL('/?error=auth_failed', request.url));
-   }
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        get(name) {
+          return request.cookies.get(name)?.value;
+        },
+        set(name, value, options) {
+          request.cookies.set({ name, value, ...options });
+        },
+        remove(name, options) {
+          request.cookies.delete(name);
+        },
+      },
+    }
+  );
+
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+  if (error) {
+    return NextResponse.redirect(new URL('/?error=auth_failed', request.url));
+  }
+
+  return NextResponse.redirect(new URL(next, request.url));
+}
