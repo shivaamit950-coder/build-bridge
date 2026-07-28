@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
-import { createServerSupabase } from "@/lib/supabaseServer";
-import TopBar from "@/components/TopBar";
-import HomeSearch from "@/components/HomeSearch";
-import JourneyCards from "@/components/JourneyCards";
-import CommunityShowcase from "@/components/CommunityShowcase";
+import { createServerSupabase } from "@/supabaseServer";
+import TopBar from "@/TopBar";
+import HomeSearch from "@/HomeSearch";
+import JourneyCards from "@/JourneyCards";
+import CommunityShowcase from "@/CommunityShowcase";
 
 export default async function HomePage() {
   const supabase = createServerSupabase();
