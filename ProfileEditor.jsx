@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { createClient } from "@/lib/supabaseClient";
+import { createClient } from "@/supabaseClient";
 import { useRouter } from "next/navigation";
-import ProjectCard from "@/components/ProjectCard";
+import ProjectCard from "@/ProjectCard";
 
 export default function ProfileEditor({ profile, projects }) {
   const [editing, setEditing] = useState(false);
