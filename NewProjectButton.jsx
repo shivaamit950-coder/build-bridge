@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/components/AuthProvider";
+import { useAuth } from "@/AuthProvider";
 
 export default function NewProjectButton() {
   const { requireAuth } = useAuth();
