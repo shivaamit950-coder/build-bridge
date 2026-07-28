@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { createClient } from "@/lib/supabaseClient";
-import { useAuth } from "@/components/AuthProvider";
+import { createClient } from "@/supabaseClient";
+import { useAuth } from "@/AuthProvider";
 
 export default function BookmarkButton({ projectId, initiallyBookmarked }) {
   const [bookmarked, setBookmarked] = useState(initiallyBookmarked);
