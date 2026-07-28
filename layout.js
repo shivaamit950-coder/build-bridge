@@ -1,9 +1,8 @@
 import "./globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { AuthProvider } from "@/components/AuthProvider";
-import BottomNav from "@/components/BottomNav";
-import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
-
+import { ThemeProvider } from "@/ThemeProvider";
+import { AuthProvider } from "@/AuthProvider";
+import BottomNav from "@/BottomNav";
+import ServiceWorkerRegister from "@/ServiceWorkerRegister";
 export const metadata = {
   title: "BuildBridge — find the right partner to build with",
   description:
