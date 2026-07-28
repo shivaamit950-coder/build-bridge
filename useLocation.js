@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { createClient } from "@/lib/supabaseClient";
+import { createClient } from "@/supabaseClient";
 
 // Only re-prompt/re-save automatically if the stored location is older than this.
 // "Update when needed" = don't hit GPS + write to the DB on every single page
