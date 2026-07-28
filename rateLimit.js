@@ -1,4 +1,4 @@
-import { createServerSupabase } from "@/lib/supabaseServer";
+import { createServerSupabase } from "@/supabaseServer";
 
 /**
  * Simple per-user, per-hour rate limit backed by Supabase.
