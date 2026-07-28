@@ -1,9 +1,9 @@
 "use client";
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { INDUSTRIES, STAGES, COLLAB_TYPES, AVAILABILITY } from "@/lib/constants";
-import ProjectCard from "@/components/ProjectCard";
-import { useLocation, haversineKm, DISTANCE_OPTIONS } from "@/lib/useLocation";
+import { INDUSTRIES, STAGES, COLLAB_TYPES, AVAILABILITY } from "@/constants";
+import ProjectCard from "@/ProjectCard";
+import { useLocation, haversineKm, DISTANCE_OPTIONS } from "@/useLocation";
 
 export default function DiscoverFilters({ profiles, projects }) {
   const [tab, setTab] = useState("people"); // people | projects
