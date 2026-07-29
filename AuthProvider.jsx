@@ -26,8 +26,6 @@ export function AuthProvider({ children }) {
     return () => listener.subscription.unsubscribe();
   }, []);
 
-  // Any page/component can call requireAuth() before an action (message, post, save, etc).
-  // Returns true if already signed in (go ahead); if not, opens the sign-in dropdown and returns false.
   function requireAuth() {
     if (user) return true;
     setDropdownOpen(true);
@@ -83,32 +81,44 @@ function FloatingSignIn({ open, setOpen }) {
   }
 
   return (
-    <div ref={wrapRef} className="fixed bottom-24 right-5 z-40">
+    <div ref={wrapRef} className="fixed bottom-24 left-5 z-40">
       {open && (
-        <div className="absolute bottom-16 right-0 w-64 card p-3 shadow-soft fade-in space-y-2">
+        <div className="absolute bottom-16 left-0 w-72 rounded-2xl bg-gradient-to-br from-slate-900 to-slate-950 dark:from-[#0f1419] dark:to-[#0a0d12] border border-amber-500/20 shadow-2xl space-y-3 p-4">
           {sent ? (
-            <p className="text-xs text-slate-500 dark:text-slate-400 p-2">
-              Check your email for a sign-in link.
-            </p>
+            <div className="text-center">
+              <p className="text-xs text-amber-200/90 p-2 font-medium">
+                ✓ Check your email for a sign-in link
+              </p>
+            </div>
           ) : !showEmail ? (
             <>
+              <p className="text-[11px] text-amber-100/60 font-medium uppercase tracking-wider mb-3">Join BuildBridge</p>
               <button
                 onClick={handleGoogle}
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white dark:bg-[#1a2234] border border-slate-200 dark:border-slate-700 text-xs font-medium text-navy dark:text-white hover:bg-slate-50 dark:hover:bg-[#253449] transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-semibold transition-all shadow-lg hover:shadow-amber-500/30 disabled:opacity-50"
               >
                 <GoogleIcon />
                 {loading ? "Connecting…" : "Continue with Google"}
               </button>
+              <div className="relative py-2">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-slate-700/50"></div>
+                </div>
+                <div className="relative flex justify-center text-xs">
+                  <span className="px-2 bg-gradient-to-br from-slate-900 to-slate-950 text-slate-400">or</span>
+                </div>
+              </div>
               <button
                 onClick={() => setShowEmail(true)}
-                className="w-full text-center text-[11px] text-slate-400 hover:text-slate-500 py-1"
+                className="w-full px-4 py-3 rounded-xl border border-amber-500/40 hover:border-amber-500/60 bg-slate-800/40 hover:bg-slate-700/50 text-amber-200 text-xs font-medium transition-all"
               >
-                or use email
+                Continue with Email
               </button>
             </>
           ) : (
-            <form onSubmit={handleEmailSend} className="space-y-2">
+            <form onSubmit={handleEmailSend} className="space-y-3">
+              <p className="text-[11px] text-amber-100/60 font-medium">Enter your email</p>
               <input
                 type="email"
                 required
@@ -116,14 +126,14 @@ function FloatingSignIn({ open, setOpen }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-[#111827] outline-none focus:border-royal text-xs"
+                className="w-full px-4 py-3 rounded-xl border border-amber-500/30 bg-slate-800/60 outline-none focus:border-amber-400 text-white text-xs placeholder:text-slate-400 transition-colors"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-3 py-2 rounded-xl bg-royal text-white text-xs font-medium disabled:opacity-50"
+                className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white text-xs font-semibold transition-all shadow-lg disabled:opacity-50"
               >
-                {loading ? "Sending…" : "Send link"}
+                {loading ? "Sending…" : "Send Sign-In Link"}
               </button>
             </form>
           )}
@@ -133,9 +143,9 @@ function FloatingSignIn({ open, setOpen }) {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label="Sign in"
-        className="w-14 h-14 rounded-full bg-royal text-white shadow-soft flex items-center justify-center text-xl hover:bg-royal-600 transition-colors"
+        className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white shadow-2xl shadow-amber-500/30 flex items-center justify-center text-2xl hover:scale-110 transition-transform duration-200"
       >
-        {open ? "×" : "👤"}
+        {open ? "✕" : "👤"}
       </button>
     </div>
   );
@@ -144,10 +154,10 @@ function FloatingSignIn({ open, setOpen }) {
 function GoogleIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 18 18">
-      <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.92c1.7-1.57 2.68-3.88 2.68-6.64z" />
-      <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.27c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.71H.96v2.33C2.44 15.98 5.48 18 9 18z" />
-      <path fill="#FBBC05" d="M3.97 10.7c-.18-.54-.28-1.11-.28-1.7s.1-1.16.28-1.7V4.97H.96A8.996 8.996 0 000 9c0 1.45.35 2.83.96 4.03l3.01-2.33z" />
-      <path fill="#EA4335" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.97l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z" />
+      <path fill="#ffffff" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.92c1.7-1.57 2.68-3.88 2.68-6.64z" />
+      <path fill="#ffffff" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.27c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.71H.96v2.33C2.44 15.98 5.48 18 9 18z" />
+      <path fill="#ffffff" d="M3.97 10.7c-.18-.54-.28-1.11-.28-1.7s.1-1.16.28-1.7V4.97H.96A8.996 8.996 0 000 9c0 1.45.35 2.83.96 4.03l3.01-2.33z" />
+      <path fill="#ffffff" d="M9 3.58c1.32 0 2.51.45 3.44 1.35l2.59-2.59C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.97l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z" />
     </svg>
   );
 }
